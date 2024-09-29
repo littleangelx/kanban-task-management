@@ -14,8 +14,9 @@ module.exports = {
       },
     },
     colors: {
-      navColor: "#fff",
+      whiteColor: "#fff",
       bgColor: "#f4f7fd",
+      brandPurple: "#635fc7",
     },
   },
   plugins: [],
