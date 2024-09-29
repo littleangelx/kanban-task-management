@@ -5,6 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       backgroundImage: {
@@ -17,6 +18,8 @@ module.exports = {
       whiteColor: "#fff",
       bgColor: "#f4f7fd",
       brandPurple: "#635fc7",
+      mediumGrey: "#828FA3",
+      darkGrey: "#2B2C37",
     },
   },
   plugins: [],
