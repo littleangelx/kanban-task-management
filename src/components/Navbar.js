@@ -2,9 +2,16 @@
 
 import { useMinimised } from "@/context/sidebarWidth";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { isMinimised } = useMinimised();
+  const selectedBoard = useSelector(
+    (state) => state.boardsReducer.selectedBoard
+  );
+  const boardName = useSelector((state) => state.boardsReducer.boards)[
+    selectedBoard
+  ].name;
   return (
     <div
       className="xl:h-24 bg-whiteColor dark:bg-darkGrey flex justify-between px-6 items-center fixed"
@@ -13,7 +20,9 @@ const Navbar = () => {
         marginLeft: isMinimised ? "13rem" : "18.75rem",
       }}
     >
-      <h2 className="text-[#000112] text-2xl font-bold">Platform Launch</h2>
+      <h2 className="text-[#000112] dark:text-whiteColor text-2xl font-bold">
+        {boardName}
+      </h2>
       <div className="flex items-center gap-6">
         <button className="w-[10.25rem] h-12 rounded-3xl bg-brandPurple text-whiteColor">
           + Add New Task

@@ -27,7 +27,7 @@ const Sidebar = () => {
   if (isMinimised)
     return (
       <div
-        className="w-14 h-12 rounded-r-full bg-brandPurple flex items-center justify-center absolute bottom-8  cursor-pointer"
+        className="w-14 h-12 rounded-r-full bg-brandPurple flex items-center justify-center fixed bottom-8  cursor-pointer"
         onClick={toggleMinimised}
       >
         <Image
@@ -41,20 +41,20 @@ const Sidebar = () => {
 
   return (
     <div
-      className="w-[18.75rem]  overflow-hidden fixed top-24 bg-whiteColor dark:bg-darkGrey pl-8 pr-6 pt-8 border-r 
-    border-r-[#e4ebfa] flex flex-col justify-between"
+      className="w-[18.75rem] fixed top-24 bg-whiteColor dark:bg-darkGrey  pr-6 pt-8 border-r 
+    border-r-[#e4ebfa] dark:border-none flex flex-col justify-between"
       style={{ height: "calc(100vh - 6rem)" }}
     >
       <div className="w-full">
         <div className="">
-          <h4 className="text-mediumGrey text-xs font-bold uppercase tracking-[0.15rem]">
+          <h4 className="text-mediumGrey text-xs font-bold uppercase tracking-[0.15rem] pl-8">
             All Boards ({boards.length})
           </h4>
-          <div className="mt-5">
+          <div className="mt-5 overflow-y-scroll overflow-x-hidden">
             {boards.map((board, index) => (
               <div
                 key={index}
-                className={`w-[17.25rem] relative -left-8 pl-8 py-4 flex items-center gap-4  cursor-pointer ${
+                className={`w-[19rem] relative -left-8 pl-16 py-4 flex items-center gap-4  cursor-pointer ${
                   selectedBoard === index ? "bg-brandPurple rounded-r-full" : ""
                 }`}
                 onClick={() => handleChangeSelectedBoard(index)}
@@ -71,7 +71,7 @@ const Sidebar = () => {
                 </p>
               </div>
             ))}
-            <div className="flex items-center gap-4 py-4 cursor-pointer">
+            <div className="flex items-center gap-4 py-4 pl-8 cursor-pointer">
               <Image
                 src={"../assets/icon-board.svg"}
                 width={16}
@@ -85,7 +85,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-5 pb-12">
+      <div className="flex flex-col gap-5 pb-12 pl-8">
         <DarkModeToggle />
         <div
           className="flex gap-4 items-center cursor-pointer"

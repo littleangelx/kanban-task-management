@@ -11,7 +11,9 @@ const Logo = () => {
   return (
     <div
       className={`h-24 pl-8 pt-8 bg-whiteColor dark:bg-darkGrey border-r 
-    border-r-[#e4ebfa]  ${isMinimised ? "w-[13rem]" : "w-[18.75rem]"} fixed`}
+    border-r-[#e4ebfa] dark:border-none  ${
+      isMinimised ? "w-[13rem]" : "w-[18.75rem]"
+    } fixed`}
     >
       <Image
         src={
