@@ -477,6 +477,23 @@ const boardsSlice = createSlice({
         (task) => task.title !== action.payload.taskName
       );
     },
+    deleteTask(state, action) {
+      const foundBoard = state.boards[action.payload.boardIndex];
+      const foundColumn = foundBoard.columns[action.payload.columnIndex];
+      foundColumn.tasks = foundColumn.tasks.filter(
+        (task) => task.title !== action.payload.taskName
+      );
+    },
+    editTask(state, action) {
+      const foundBoard = state.boards[action.payload.boardIndex];
+      const foundColumn = foundBoard.columns[action.payload.columnIndex];
+      const foundTask = foundColumn.tasks.find(
+        (task) => task.title === action.payload.taskName
+      );
+      foundTask["title"] = action.payload.title;
+      foundTask["description"] = action.payload.description;
+      foundTask["subtasks"] = action.payload.subtasks;
+    },
   },
 });
 
@@ -484,5 +501,7 @@ export const {
   updateSelectedBoard,
   updateSubtaskCompleted,
   updateTaskCategory,
+  deleteTask,
+  editTask,
 } = boardsSlice.actions;
 export default boardsSlice.reducer;

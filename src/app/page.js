@@ -1,5 +1,7 @@
 "use client";
 
+import DeleteTaskModal from "@/components/DeleteTaskModal";
+import EditTaskModal from "@/components/EditTaskModal";
 import ViewTaskModal from "@/components/ViewTaskModal";
 import { useMinimised } from "@/context/sidebarWidth";
 import {
@@ -26,6 +28,8 @@ export default function Home() {
   const [selectedColumn, setSelectedColumn] = useState();
 
   const [viewTaskVisible, setViewTaskVisible] = useState(false);
+  const [showEditTask, setShowEditTask] = useState(false);
+  const [showDeleteTask, setShowDeleteTask] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -42,6 +46,14 @@ export default function Home() {
         newCategory,
       })
     );
+  };
+
+  const handleDeleteTaskVisibility = (value) => {
+    setShowDeleteTask(value);
+  };
+
+  const handleEditTaskVisibility = (value) => {
+    setShowEditTask(value);
   };
 
   return (
@@ -93,14 +105,32 @@ export default function Home() {
         </div>
       ))}
       {selectedTask && (
-        <ViewTaskModal
-          isVisible={viewTaskVisible}
-          onChangeVisibility={handleViewTaskVisible}
-          task={selectedTask}
-          selectedBoard={selectedBoard}
-          selectedColumn={selectedColumn}
-          onChangeCategory={handleChangeCategory}
-        />
+        <>
+          <ViewTaskModal
+            isVisible={viewTaskVisible}
+            onChangeVisibility={handleViewTaskVisible}
+            task={selectedTask}
+            selectedBoard={selectedBoard}
+            selectedColumn={selectedColumn}
+            onChangeCategory={handleChangeCategory}
+            onChangeDeleteTaskVisibility={handleDeleteTaskVisibility}
+            onChangeEditTaskVisibility={handleEditTaskVisibility}
+          />
+          <DeleteTaskModal
+            isVisible={showDeleteTask}
+            taskName={selectedTask.title}
+            selectedBoard={selectedBoard}
+            selectedColumn={selectedColumn}
+            onChangeVisibility={handleDeleteTaskVisibility}
+          />
+          <EditTaskModal
+            isVisible={showEditTask}
+            task={selectedTask}
+            selectedBoard={selectedBoard}
+            selectedColumn={selectedColumn}
+            onChangeVisibility={handleEditTaskVisibility}
+          />
+        </>
       )}
     </div>
   );

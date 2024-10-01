@@ -12,7 +12,10 @@ const ViewTaskModal = ({
   selectedBoard,
   selectedColumn,
   onChangeCategory,
+  onChangeDeleteTaskVisibility,
+  onChangeEditTaskVisibility,
 }) => {
+  const [showMenu, setShowMenu] = useState(false);
   const [showStatusMenu, setShowStatusMenu] = useState(false);
 
   const dispatch = useDispatch();
@@ -57,12 +60,53 @@ const ViewTaskModal = ({
           <h3 className="text-[#000112] dark:text-whiteColor font-bold">
             {task.title}
           </h3>
-          <Image
-            src={"/assets/icon-vertical-ellipsis.svg"}
-            width={5}
-            height={20}
-            alt="open task menu"
-          />
+          <div className="relative -right-3">
+            <div
+              onClick={() => setShowMenu((show) => !show)}
+              className="cursor-pointer w-6 h-6 flex justify-center"
+            >
+              <Image
+                src={"/assets/icon-vertical-ellipsis.svg"}
+                width={5}
+                height={20}
+                alt="open task menu"
+              />
+            </div>
+
+            {showMenu && (
+              <div
+                className="w-60 p-4 bg-whiteColor flex flex-col gap-4 rounded-lg absolute -left-20 top-10"
+                style={{
+                  boxShadow: "0px 10px 20px 0px rgba(54, 78, 126, 0.25)",
+                }}
+              >
+                <div
+                  className="cursor-pointer"
+                  onClick={() => {
+                    onChangeVisibility(false);
+                    setShowMenu(false);
+                    onChangeEditTaskVisibility(true);
+                  }}
+                >
+                  <p className="text-mediumGrey text-sm font-medium">
+                    Edit Task
+                  </p>
+                </div>
+                <div
+                  className="cursor-pointer"
+                  onClick={() => {
+                    onChangeVisibility(false);
+                    setShowMenu(false);
+                    onChangeDeleteTaskVisibility(true);
+                  }}
+                >
+                  <p className="text-[#EA5555] text-sm font-medium">
+                    Delete Task
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
         {task.description && (
           <p className="text-mediumGrey text-sm font-medium leading-6 mb-6">
