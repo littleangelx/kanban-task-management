@@ -75,7 +75,7 @@ const ViewTaskModal = ({
 
             {showMenu && (
               <div
-                className="w-60 p-4 bg-whiteColor flex flex-col gap-4 rounded-lg absolute -left-20 top-10"
+                className="w-60 p-4 bg-whiteColor dark:bg-darkGrey flex flex-col gap-4 rounded-lg absolute -left-20 top-10"
                 style={{
                   boxShadow: "0px 10px 20px 0px rgba(54, 78, 126, 0.25)",
                 }}
@@ -187,7 +187,10 @@ const ViewTaskModal = ({
         </div>
         <button
           className="w-full rounded-lg bg-brandPurple text-whiteColor text-lg font-bold py-2"
-          onClick={() => onChangeVisibility(false)}
+          onClick={() => {
+            onChangeVisibility(false);
+            setShowMenu(false);
+          }}
         >
           Cancel
         </button>

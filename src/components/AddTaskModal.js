@@ -1,55 +1,35 @@
 "use client";
 
-import { editTask, updateTaskCategory } from "@/store/boardsSlice";
+import { addTask, editTask, updateTaskCategory } from "@/store/boardsSlice";
 import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const EditTaskModal = ({
-  isVisible,
-  task,
-  onChangeVisibility,
-  selectedBoard,
-  selectedColumn,
-  onChangeCategory,
-}) => {
+const AddTaskModal = ({ isVisible, onChangeVisibility, selectedBoard }) => {
   const [showStatusMenu, setShowStatusMenu] = useState(false);
 
   const categories = useSelector((state) => state.boardsReducer.boards)[
     selectedBoard
   ].columns.map((column) => column.name);
-  const currentCategory = categories[selectedColumn];
 
-  const [tempNewTitle, setTempNewTitle] = useState(task.title);
-  const [tempNewDescription, setTempNewDescription] = useState(
-    task.description
-  );
-  const [tempNewSubtasks, setTempNewSubtasks] = useState(task.subtasks);
-  const [tempNewCategory, setTempNewCategory] = useState(currentCategory);
+  const [tempNewTitle, setTempNewTitle] = useState();
+  const [tempNewDescription, setTempNewDescription] = useState();
+  const [tempNewSubtasks, setTempNewSubtasks] = useState([""]);
+  const [newSubtasks, setNewSubtasks] = useState([]);
+  const [tempNewCategory, setTempNewCategory] = useState(categories[0]);
 
   const dispatch = useDispatch();
 
   const handleSaveChanges = () => {
     dispatch(
-      editTask({
+      addTask({
         boardIndex: selectedBoard,
-        columnIndex: selectedColumn,
-        taskName: task.title,
         title: tempNewTitle,
         description: tempNewDescription,
-        subtasks: tempNewSubtasks,
+        subtasks: newSubtasks,
+        category: tempNewCategory,
       })
     );
-    if (tempNewCategory !== currentCategory) {
-      dispatch(
-        updateTaskCategory({
-          boardIndex: selectedBoard,
-          columnIndex: selectedColumn,
-          taskName: tempNewTitle,
-          newCategory: tempNewCategory,
-        })
-      );
-    }
 
     onChangeVisibility(false);
   };
@@ -60,7 +40,7 @@ const EditTaskModal = ({
     <div className="fixed top-0 left-0 w-screen h-screen bg-[#00000090] flex justify-center items-center z-20 ">
       <div className="w-[30rem] p-8 bg-whiteColor dark:bg-darkGrey rounded-md flex flex-col gap-4">
         <h4 className="text-[#000112] dark:text-whiteColor text-lg font-bold">
-          Edit Task
+          Add New Task
         </h4>
         <div className="flex flex-col gap-2">
           <label className="text-mediumGrey dark:text-whiteColor text-xs font-bold">
@@ -92,14 +72,10 @@ const EditTaskModal = ({
                 className="w-full h-8 rounded border border-[#828FA325] px-4 text-[#000112] text-xs font-medium flex-1 dark:bg-darkGrey dark:text-whiteColor"
                 defaultValue={subtask.title}
                 onBlur={(e) =>
-                  setTempNewSubtasks((prev) =>
-                    prev.map((item, itemIndex) => {
-                      if (index === itemIndex) {
-                        return { ...item, title: e.target.value };
-                      }
-                      return item;
-                    })
-                  )
+                  setNewSubtasks((prev) => [
+                    ...prev,
+                    { title: e.target.value, isCompleted: false },
+                  ])
                 }
               />
               <Image
@@ -190,4 +166,4 @@ const EditTaskModal = ({
   );
 };
 
-export default EditTaskModal;
+export default AddTaskModal;
