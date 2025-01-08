@@ -59,37 +59,31 @@ const EditTaskModal = ({
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-[#00000090] flex justify-center items-center z-20 ">
       <div className="w-[30rem] p-8 bg-whiteColor dark:bg-darkGrey rounded-md flex flex-col gap-4">
-        <h4 className="text-[#000112] dark:text-whiteColor text-lg font-bold">
-          Edit Task
-        </h4>
+        <h4 className="text-[#000112] text-lg font-bold">Edit Task</h4>
         <div className="flex flex-col gap-2">
-          <label className="text-mediumGrey dark:text-whiteColor text-xs font-bold">
-            Title
-          </label>
+          <label className="text-mediumGrey text-xs font-bold">Title</label>
           <input
-            className="w-full h-8 rounded border border-[#828FA325] px-4 text-[#000112] text-xs font-medium dark:text-whiteColor dark:bg-darkGrey"
+            className="w-full h-8 rounded border border-[#828FA325] px-4 text-[#000112] text-xs font-medium"
             defaultValue={tempNewTitle}
             onChange={(e) => setTempNewTitle(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-mediumGrey dark:text-whiteColor text-xs font-bold">
+          <label className="text-mediumGrey text-xs font-bold">
             Description
           </label>
           <textarea
-            className="w-full h-20 rounded border border-[#828FA325] px-4 text-[#000112] text-xs font-medium py-2 resize-none dark:bg-darkGrey dark:text-whiteColor"
+            className="w-full h-20 rounded border border-[#828FA325] px-4 text-[#000112] text-xs font-medium py-2 resize-none"
             defaultValue={tempNewDescription}
             onChange={(e) => setTempNewDescription(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-mediumGrey text-xs font-bold dark:text-whiteColor">
-            Subtasks
-          </label>
+          <label className="text-mediumGrey text-xs font-bold">Subtasks</label>
           {tempNewSubtasks.map((subtask, index) => (
             <div key={subtask.title} className="flex gap-4 items-center">
               <input
-                className="w-full h-8 rounded border border-[#828FA325] px-4 text-[#000112] text-xs font-medium flex-1 dark:bg-darkGrey dark:text-whiteColor"
+                className="w-full h-8 rounded border border-[#828FA325] px-4 text-[#000112] text-xs font-medium flex-1"
                 defaultValue={subtask.title}
                 onBlur={(e) =>
                   setTempNewSubtasks((prev) =>
@@ -117,7 +111,7 @@ const EditTaskModal = ({
           ))}
         </div>
         <button
-          className="w-full h-8 bg-brandPurple/10 text-brandPurple text-xs font-bold rounded-full dark:bg-whiteColor"
+          className="w-full h-8 bg-brandPurple/10 text-brandPurple text-xs font-bold rounded-full"
           onClick={() =>
             setTempNewSubtasks((prev) => [
               ...prev,
@@ -128,9 +122,7 @@ const EditTaskModal = ({
           + Add New Subtask
         </button>
         <div className="flex flex-col gap-2">
-          <label className="text-mediumGrey dark:text-whiteColor text-xs font-bold">
-            Status
-          </label>
+          <label className="text-mediumGrey text-xs font-bold">Status</label>
           <div className="relative w-full">
             <div
               className="w-full px-4 py-2 border border-[#828FA325] rounded flex justify-between items-center cursor-pointer"
@@ -162,7 +154,7 @@ const EditTaskModal = ({
                       setShowStatusMenu(false);
                     }}
                   >
-                    <p className="text-xs text-mediumGrey dark:text-whiteColor font-medium">
+                    <p className="text-xs text-mediumGrey font-medium">
                       {category}
                     </p>
                   </div>

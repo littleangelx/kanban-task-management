@@ -4,7 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import { SidebarProvider } from "@/context/sidebarWidth";
 import { ThemeProvider } from "@/context/theme";
 import { Inter } from "next/font/google";
-import "../../globals.css";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

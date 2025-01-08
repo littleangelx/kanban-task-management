@@ -1,3 +1,5 @@
+"use client";
+
 // Example of fetching boards in a Next.js component
 import { useEffect, useState } from "react";
 
