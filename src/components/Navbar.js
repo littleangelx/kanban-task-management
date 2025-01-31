@@ -12,9 +12,10 @@ const Navbar = () => {
   const boardName = useSelector((state) => state.boardsReducer.boards)[
     selectedBoard
   ].name;
+
   return (
     <div
-      className="xl:h-24 bg-whiteColor dark:bg-darkGrey flex justify-between px-6 items-center fixed"
+      className="h-24 bg-whiteColor dark:bg-darkGrey flex justify-between px-6 items-center fixed"
       style={{
         width: isMinimised ? "calc(100vw - 13rem)" : "calc(100vw - 18.75rem)",
         marginLeft: isMinimised ? "13rem" : "18.75rem",
@@ -32,6 +33,7 @@ const Navbar = () => {
           width={4.5}
           height={20}
           className="cursor-pointer"
+          alt="open menu"
         />
       </div>
     </div>

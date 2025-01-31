@@ -21,14 +21,14 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <SidebarProvider>
             <Providers>
-              <div className="flex ">
-                <div className="flex flex-col">
+              <div className="flex">
+                <div className="flex flex-col fixed">
                   <Logo />
                   <Sidebar />
                 </div>
-                <div className="flex flex-col  w-screen">
+                <div className="flex flex-col">
                   <Navbar />
-                  <div className="bg-bgColor min-h-screen flex-grow w-full">
+                  <div className="bg-bgColor min-h-screen flex-grow flex-1 w-full">
                     {children}
                   </div>
                 </div>

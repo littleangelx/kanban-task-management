@@ -31,7 +31,7 @@ const DarkModeToggle = () => {
         src={"/assets/icon-dark-theme.svg"}
         height={16}
         width={16}
-        alt="light mode"
+        alt="dark mode"
       />
     </div>
   );

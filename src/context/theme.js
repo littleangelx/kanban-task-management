@@ -7,7 +7,7 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const getInitialTheme = () => {
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme = localStorage?.getItem("theme");
     if (savedTheme) {
       return savedTheme;
     } else {
