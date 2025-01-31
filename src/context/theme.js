@@ -2,7 +2,6 @@
 
 import React, { createContext, useState, useEffect, useContext } from "react";
 
-// Create a context with 'light' as the default value
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
@@ -14,7 +13,6 @@ export const ThemeProvider = ({ children }) => {
     } else {
       document.documentElement.classList.remove("dark");
     }
-    localStorage.setItem("theme", theme);
   }, [theme]);
 
   return (
