@@ -58,7 +58,7 @@ export default function Home() {
 
   return (
     <div
-      className={`bg-bgColor dark:bg-darkGrey mt-24 p-6 h-full min-h-screen w-full grid gap-6 overflow-scroll ${
+      className={`bg-bgColor dark:bg-darkGrey mt-24 p-6 h-full min-h-screen w-full grid gap-6 ${
         isMinimised ? "" : "ml-[18.75rem]"
       }`}
       style={{ gridTemplateColumns: "1fr 1fr 1fr" }}
